@@ -5,6 +5,7 @@ require('./src/db/connect')
 const CityRouter = require("./src/router/City.Router");
 const AdventureRouter = require("./src/router/Adventure.Router");
 const AdventureDetailsRouter = require("./src/router/AdventureDetails.Router")
+const AuthRouter = require("./src/router/Auth.Router")
 
 const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
@@ -16,6 +17,7 @@ server.use(express.json())
 server.use("/cities", CityRouter);
 server.use("/adventure", AdventureRouter);
 server.use("/adventures/detail", AdventureDetailsRouter)
+server.use("/auth", AuthRouter)
 server.use("*", (request, response) => {
     response.status(404).json({
         success : false,
