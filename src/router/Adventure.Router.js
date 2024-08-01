@@ -1,6 +1,5 @@
 const express = require("express");
 const { CreateNewAdventureController, GetAllAdventureController, UpdateAdventureController, DeleteAdventureController } = require("../controller/Adventure.controller");
-
 const AdventureRouter = express.Router();
 
 AdventureRouter.post("/add", CreateNewAdventureController)
