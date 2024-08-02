@@ -67,12 +67,18 @@ async function SigninUserController (request, response) {
           const {password : encryptedPassword, _id : userId} = UserResult.data
           const PasswordCompareResult = bcrypt.compareSync(password, encryptedPassword)
 
-          if (PasswordCompareResult) {
-            console.log("Password match")
+        //   if (PasswordCompareResult) {
+        //     console.log("Password match")
 
-          } else {
-            console.log("Password differ")
-          }
+        //   } else {
+        //     console.log("Password differ")
+        //   }
+
+          if(!PasswordCompareResult){
+                const err = new Error("Invalid Email or Password")
+                err.status = httpStatus.BAD_REQUEST
+                throw err
+            }
           //Step - 2 : We will generate the token and will send back to client
 
           const PAYLOAD = {
@@ -84,7 +90,7 @@ async function SigninUserController (request, response) {
             success : true,
             token
           })
-          
+
     } catch(error) {
           console.log(error)
         //   response.status(httpStatus.INTERNAL_SERVER_ERROR).json({

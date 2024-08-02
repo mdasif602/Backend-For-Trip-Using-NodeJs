@@ -47,4 +47,28 @@ async function GetUserByEmailFromDbService(email) {
       }
 }
 
-module.exports = {CreateNewUserInDbService, GetUserByEmailFromDbService}
+async function GetUserByUserIdFromDbService(userId) {
+  try {
+     const result = await UserModel.findById(userId)
+
+     if (result) {
+      return {
+        success : true,
+        data : result
+      }
+     } else {
+        // throw new Error("GetUserByEmailFromDbService unable to find a user")
+        return {
+          success : false,
+          data : "Invalid credentials"
+        }
+     }
+  } catch(error) {
+     console.log(error)
+     return {
+        success : false
+     }
+  }
+}
+
+module.exports = {CreateNewUserInDbService, GetUserByEmailFromDbService, GetUserByUserIdFromDbService}

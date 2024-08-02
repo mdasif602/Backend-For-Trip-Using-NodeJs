@@ -2,17 +2,19 @@ const express = require("express")
 require('dotenv').config()
 require('./src/db/connect')
 
-const CityRouter = require("./src/router/City.Router");
-const AdventureRouter = require("./src/router/Adventure.Router");
+const CityRouter = require("./src/router/City.Router")
+const AdventureRouter = require("./src/router/Adventure.Router")
 const AdventureDetailsRouter = require("./src/router/AdventureDetails.Router")
 const AuthRouter = require("./src/router/Auth.Router")
-
+const {RequestPathAndMethodLoggerMiddleware} = require("./src/middlewares/Logger.middleware")
 const PORT = process.env.PORT
 const NODE_ENV = process.env.NODE_ENV
 
 const server = express()
 
 server.use(express.json())
+
+server.use(RequestPathAndMethodLoggerMiddleware)
 
 server.use("/cities", CityRouter);
 server.use("/adventure", AdventureRouter);
