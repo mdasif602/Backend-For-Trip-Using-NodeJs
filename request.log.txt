@@ -32,3 +32,4 @@ Timestamp : Fri Aug 02 2024 18:15:22 GMT+0530 (India Standard Time) Path - /auth
 Timestamp : Fri Aug 02 2024 18:15:43 GMT+0530 (India Standard Time) Path - /cities/add Method - POST
 Timestamp : Fri Aug 02 2024 18:18:04 GMT+0530 (India Standard Time) Path - /auth/signin Method - POST
 Timestamp : Fri Aug 02 2024 18:18:35 GMT+0530 (India Standard Time) Path - /cities/add Method - POST
+Timestamp : Sat Aug 03 2024 11:22:12 GMT+0530 (India Standard Time) Path - /auth/signin Method - POST

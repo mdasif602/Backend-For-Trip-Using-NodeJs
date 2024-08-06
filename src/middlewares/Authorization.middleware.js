@@ -36,5 +36,24 @@ async function AdminAuthorizationMiddleware(request, response, next) {
     }
 }
 
+async function CustomerAuthorizationMiddleWare(request, response, next) {
+    try {
+         const token = request.headers.authorization.split(" ")[1]
+         const payload = jwt.verify(token, JWT_SECRET_KEY)
 
-module.exports = {AdminAuthorizationMiddleware}
+         const {userid : userId} = payload
+        const result = await GetUserByUserIdFromDbService(userId)
+        if (!result.success) {
+            throw new Error()
+        }
+        next()
+    } catch (error) {
+        response.status(error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR).json({
+            success : false, 
+            message : error.status ? error.message : "Something went wrong"
+        })
+    }
+}
+
+
+module.exports = {AdminAuthorizationMiddleware, CustomerAuthorizationMiddleWare}
